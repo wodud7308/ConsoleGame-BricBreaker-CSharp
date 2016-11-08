@@ -1,0 +1,6 @@
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Debug\Bric Breaker.exe.config
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Debug\Bric Breaker.exe
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Debug\Bric Breaker.pdb
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\obj\Debug\Bric Breaker.csprojResolveAssemblyReference.cache
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\obj\Debug\Bric Breaker.exe
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\obj\Debug\Bric Breaker.pdb
