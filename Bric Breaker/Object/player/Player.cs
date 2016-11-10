@@ -25,7 +25,7 @@ namespace Object
             private set { position = value; }
         }
     
-        public Player PlayerInfo
+        public  Player PlayerInfo
         {
             get { return this; }
         }
@@ -34,7 +34,15 @@ namespace Object
         {
             position = new Position();
             collider = new Collider();
-            position.SetPosition(38, 17);     
+            PlayerSize = 7;
+            position.SetPosition(38, 17);
+            GameMap.GetInstance.SetObjectInMap("Player", PlayerSize, position);
+        }
+
+        public void PlayerPositionInfo()
+        {
+            Console.SetCursorPosition(20, 5);
+            Console.Write("x {0} y {1} value {2}", position.X, position.Y, GameMap.GetInstance[position.Y, position.X / 2]);
         }
 
         public void Render()
@@ -50,17 +58,17 @@ namespace Object
         {
             if(collider.Collide(position, key))
             {
-                return;
+                return;  
             }
             switch(key)
             {
                 case ConsoleKey.LeftArrow:
                     Remove();
-                    position.TransformPosition(-1, 0);
+                    position.TransformPosition(-2, 0);
                     break;
                 case ConsoleKey.RightArrow:
                     Remove();
-                    position.TransformPosition(1, 0);
+                    position.TransformPosition(2, 0);
                     break;                   
             }
             GameMap.GetInstance.SetObjectInMap("Player", PlayerSize, position);

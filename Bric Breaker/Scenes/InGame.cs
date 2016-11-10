@@ -15,8 +15,7 @@ namespace Scenes
                           
         public void Draw()
         {
-            //ball.PositionInfo();
-            //ball.Render();
+            ball.Render();
             player.Render();
         }
         public void Input()
@@ -27,7 +26,7 @@ namespace Scenes
         public bool Initialize()
         {
             GameMap.GetInstance.Initiailize();
-            //ball.Initialize();
+            ball.Initialize();
             player.Initialize();
             player.Render();
             return true;
@@ -35,13 +34,18 @@ namespace Scenes
 
         public void Update()
         {
-           // ball.Update();
-          player.Move(DirectionKey);
-
+            if(ball.IsDead())
+            {
+                Dispose();
+                SceneManager.GetInstance.ChangeScene(new GameOver());
+                return;
+            }
+            ball.Update();
+            player.Move(DirectionKey);
         }
         public void Dispose()
         {
-            
+            Console.Clear();
         }
     }
 }

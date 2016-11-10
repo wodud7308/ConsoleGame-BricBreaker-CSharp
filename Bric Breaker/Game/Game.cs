@@ -10,7 +10,6 @@ class Game : Singleton<Game>
     {
         Console.CursorVisible = false;
         //Game Start
-        GameManager.GetInstance.GameStart();
         SceneManager.GetInstance.ChangeScene(new Main());
     }
     public void Update()
@@ -20,7 +19,7 @@ class Game : Singleton<Game>
             SceneManager.GetInstance.Input();
             SceneManager.GetInstance.Update();
             SceneManager.GetInstance.Draw();
-            GameManager.GetInstance. Update();
-        } while (GameManager.GetInstance.IsGameOn());
+            GameManager.GetInstance.Update();
+        } while (true);
     }
 }

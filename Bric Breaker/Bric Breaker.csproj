@@ -53,7 +53,6 @@
     <Compile Include="Object\Blocks\Standard\Block.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Object\Collider.cs" />
-    <Compile Include="Object\Object.cs" />
     <Compile Include="Object\player\Player.cs" />
     <Compile Include="Object\Position.cs" />
     <Compile Include="Scenes\Standard\Scene.cs" />

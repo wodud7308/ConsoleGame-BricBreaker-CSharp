@@ -12,14 +12,14 @@ namespace Scenes
         ConsoleKey key;
         public void Draw()
         {
-            Console.SetCursorPosition(32, 11);
+            Console.SetCursorPosition(44, 11);
             Console.Write("G A M E   O V E R ...");
-            Console.SetCursorPosition(31, 13);
+            Console.SetCursorPosition(43, 13);
             Console.Write("E S C   T O   Q U I T");
-            Console.SetCursorPosition(26, 15);
+            Console.SetCursorPosition(38, 15);
             Console.Write("P R E S S   R   T O   R E P L A Y");
-            Console.SetCursorPosition(28, 17);
-            Console.Write("P R E S S   ←   T O   M A I N");
+            Console.SetCursorPosition(36, 17);
+            Console.Write("P R E S S   S P A C E   T O   M A I N");
         }
         public void Input()
         {
@@ -30,33 +30,28 @@ namespace Scenes
             return true;
         }
 
-        public void Release()
+        public void Dispose()
         {
             Console.Clear();
         }
 
         public void Update()
         {
-            switch(key)
+            switch (key)
             {
                 case ConsoleKey.R:
-                    Release();
+                    Dispose();
                     SceneManager.GetInstance.ChangeScene(new InGame());
                     break;
-                case ConsoleKey.Backspace:
-                    Release();
-                    SceneManager.GetInstance.ChangeScene(new Main());
-                    break;
                 case ConsoleKey.Escape:
-                    Release();
+                    Dispose();
                     Environment.Exit(0);
                     break;
-            } 
-        }
-
-        public void Dispose()
-        {
-            
+                case ConsoleKey.Spacebar:
+                    Dispose();
+                    SceneManager.GetInstance.ChangeScene(new Main());
+                    break;
+            }
         }
     }
 }

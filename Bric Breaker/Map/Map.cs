@@ -6,21 +6,32 @@ namespace Map
     //MapInformation
     enum MapInfo
     {
-        NONE = 0,
-        BLOCK = 1,
-        BALL = 2,
-        PLAYER = 3,
-        WALL = 4,
-        DEAD_LINE = 5
+        NONE,
+        BLOCK,
+        BALL,
+        PLAYER,
+        CEILING,
+        SIDE,
+        DEAD_LINE
     };
     class GameMap : Singleton<GameMap>
     {
-        //Console Width/2
-        readonly private int maxX = 42;
+        //Console Width/2  (without score board)
+        readonly private int maxX = 36;
         //Console Height
         readonly private int maxY = 23;
         //MapInformation array
-        private MapInfo[,] map = new MapInfo[23, 42];
+        private MapInfo[,] map = new MapInfo[23, 36];
+
+        public int MaxX
+        {
+            get { return maxX; }
+        }
+
+        public int MaxY
+        {
+            get { return maxY; }
+        }
 
         //Map Indexer
         public MapInfo this[int y ,int x]
@@ -41,13 +52,13 @@ namespace Map
             }
             for(int x = 0; x < maxX; x++)
             {
-                map[0, x] = MapInfo.WALL;
+                map[0, x] = MapInfo.CEILING;
             }
             for(int x = 0; x<maxX; x+=maxX-1)
             {
                 for(int y=0; y<maxY; y++)
                 {
-                    map[y, x] = MapInfo.WALL;
+                    map[y, x] = MapInfo.SIDE;
                 }
             }
             for (int x = 0; x < maxX; x++)
@@ -69,8 +80,11 @@ namespace Map
                         case MapInfo.NONE:
                             Console.Write("  ");
                             break;
-                        case MapInfo.WALL:
-                            Console.Write("■");
+                        case MapInfo.CEILING:
+                            Console.Write("▥");
+                            break;
+                        case MapInfo.SIDE:
+                            Console.Write("▤");
                             break;
                         case MapInfo.DEAD_LINE:
                             Console.Write("△");
@@ -92,7 +106,7 @@ namespace Map
                         case MapInfo.NONE:
                             Console.Write("0");
                             break;
-                        case MapInfo.WALL:
+                        case MapInfo.CEILING:
                             Console.Write("1");
                             break;
                         case MapInfo.PLAYER:

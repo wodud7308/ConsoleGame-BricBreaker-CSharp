@@ -1,33 +1,40 @@
 ﻿using System;
 using Map;
 using Object.Location;
-using Object.Standard;
 using Collision;
 
 namespace Object
 {
-    class Ball : StandardObject
+    class Ball
     {    
         private Position position;
         private Collider collider;
         private int yVelocity;
         private int xVelocity;
-        private Direction horizontal;
-        private Direction vertical;
 
-        private bool IsDead()
-        {                                        
+        public bool IsDead()
+        {            
+            if(GameMap.GetInstance[position.Y+yVelocity,position.X/2]==MapInfo.DEAD_LINE)
+            {
+                return true;
+            }                            
             return false;
-        }
-
-        public void PositionInfo()
-        {
-
         }
 
         public void Initialize()
         {
-
+            position = new Position();
+            collider = new Collider();
+            position.SetPosition(34, 10);
+            xVelocity = 1;
+            yVelocity = 1;
+            GameMap.GetInstance[10, 2] = MapInfo.BALL;
+        }
+ 
+        private void Collide()
+        {
+            collider.Collide("vertical", position, ref yVelocity);
+            collider.Collide("horizontal", position, ref xVelocity);
         }
         public void Move()
         {
@@ -38,7 +45,8 @@ namespace Object
 
         public void Update()
         {
-
+            Collide();
+            Move();
         }
 
         public void Remove(int x, int y)

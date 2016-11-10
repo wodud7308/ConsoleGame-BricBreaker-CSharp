@@ -13,9 +13,9 @@ namespace Scenes
             Console.Write("M to Menual");
             Console.SetCursorPosition(0, 1);
             Console.Write("ESC to Quit");
-            Console.SetCursorPosition(26, 8);
+            Console.SetCursorPosition(38, 10);
             Console.Write("B R I C   B R E A K E R");
-            Console.SetCursorPosition(20, 10);
+            Console.SetCursorPosition(32, 14);
             Console.Write("P R E S S    S P A C E   T O   S T A R T");
         }
 

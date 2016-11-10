@@ -1,24 +1,17 @@
 ﻿using System;
 using Map;
 using Object.Location;
+using Object;
 
 namespace Collision
 {
-    public enum Direction
-    {
-        NONE,
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
     class Collider
     {
         public bool Collide(Position pos, ConsoleKey key)
         {
             if(key == ConsoleKey.LeftArrow)
             {
-                if(pos.X - 2 == 0)
+                if(pos.X - 4 == 2)
                 {
                     return true;
                 }
@@ -29,7 +22,7 @@ namespace Collision
             }
             if (key == ConsoleKey.RightArrow)
             {
-                if(pos.X + 2 == 70)
+                if(pos.X + 4 == 54)
                 {
                     return true;
                 }
@@ -40,33 +33,33 @@ namespace Collision
             }
             return true;
         }
-        public bool Collide(string direction, Position pos, ref int velocity)
+        public void Collide(string direction, Position pos, ref int velocity)
         {
             if(direction == "vertical")
             {
-               if(GameMap.GetInstance[pos.Y+velocity,pos.X] == MapInfo.WALL)
+                if (GameMap.GetInstance[pos.Y+velocity,pos.X/2] == MapInfo.CEILING)
                 {
                     velocity = velocity * -1;
-                    return true;
                 }
-               else
+                if (GameMap.GetInstance[pos.Y + velocity, pos.X / 2] == MapInfo.PLAYER)
                 {
-                    return false;
+                    velocity = velocity * -1;
                 }
             }
             else if(direction == "horizontal")
             {
-                if (GameMap.GetInstance[pos.Y, pos.X+ velocity] == MapInfo.WALL)
+                if (GameMap.GetInstance[pos.Y, (pos.X+ (2*velocity))/2] == MapInfo.SIDE)
                 {
                     velocity = velocity * -1;
-                    return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
-            return true;
+        }
+        private void SearchPlayer(Position pos, int velocity)
+        {
+            for(int x = 0; x <GameMap.GetInstance.MaxX; x++)
+            {
+                //if(GameMap.GetInstance[pos.Y])
+            }
         }
     }
 }
