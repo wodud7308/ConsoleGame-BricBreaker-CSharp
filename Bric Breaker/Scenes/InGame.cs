@@ -15,7 +15,9 @@ namespace Scenes
                           
         public void Draw()
         {
+            //ball.BlockPosInfo();
             ball.Render();
+            BlcokManager.GetInstance.Render();
             player.Render();
         }
         public void Input()
@@ -25,7 +27,9 @@ namespace Scenes
 
         public bool Initialize()
         {
+            Console.Beep();
             GameMap.GetInstance.Initiailize();
+            BlcokManager.GetInstance.Initialize();
             ball.Initialize();
             player.Initialize();
             player.Render();
@@ -45,6 +49,7 @@ namespace Scenes
         }
         public void Dispose()
         {
+            
             Console.Clear();
         }
     }

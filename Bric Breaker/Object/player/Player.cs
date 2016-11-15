@@ -10,7 +10,7 @@ namespace Object
         //X, Y position
         private Position position;
         //Collide Check
-        private Collider collider;
+        private PlayerCollider collider;
         private int playerSize;
 
         public int PlayerSize
@@ -33,9 +33,9 @@ namespace Object
         public void Initialize()
         {
             position = new Position();
-            collider = new Collider();
+            collider = new PlayerCollider();
             PlayerSize = 7;
-            position.SetPosition(38, 17);
+            position.SetPosition(38, 21);
             GameMap.GetInstance.SetObjectInMap("Player", PlayerSize, position);
         }
 
@@ -50,6 +50,7 @@ namespace Object
             Console.SetCursorPosition(position.X, position.Y);
             for (int seq = 0; seq < 7; seq++)
             {
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write("〓");
             }
         }

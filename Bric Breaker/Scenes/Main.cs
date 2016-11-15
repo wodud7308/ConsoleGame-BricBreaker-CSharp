@@ -26,6 +26,8 @@ namespace Scenes
 
         public bool Initialize()
         {
+            Console.Beep();
+            Console.ForegroundColor = ConsoleColor.Yellow;
             return true;
         }
 

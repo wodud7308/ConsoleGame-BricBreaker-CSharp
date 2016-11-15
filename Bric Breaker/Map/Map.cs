@@ -17,11 +17,11 @@ namespace Map
     class GameMap : Singleton<GameMap>
     {
         //Console Width/2  (without score board)
-        readonly private int maxX = 36;
+        readonly private int maxX = 35;
         //Console Height
-        readonly private int maxY = 23;
+        readonly private int maxY = 25;
         //MapInformation array
-        private MapInfo[,] map = new MapInfo[23, 36];
+        private MapInfo[,] map = new MapInfo[25, 35];
 
         public int MaxX
         {
@@ -37,7 +37,7 @@ namespace Map
         public MapInfo this[int y ,int x]
         {
             get { return map[y, x]; }
-            set { map[y, x] = value; }
+            private set { map[y, x] = value; }
         }
 
         //Map Initializing
@@ -50,21 +50,22 @@ namespace Map
                     map[y, x] = MapInfo.NONE;
                 }
             }
-            for(int x = 0; x < maxX; x++)
+            for (int x = 0; x < maxX; x += maxX - 1)
             {
-                map[0, x] = MapInfo.CEILING;
-            }
-            for(int x = 0; x<maxX; x+=maxX-1)
-            {
-                for(int y=0; y<maxY; y++)
+                for (int y = 0; y < maxY; y++)
                 {
                     map[y, x] = MapInfo.SIDE;
                 }
             }
             for (int x = 0; x < maxX; x++)
             {
+                map[0, x] = MapInfo.CEILING;
+            }
+            for (int x = 0; x < maxX; x++)
+            {
                 map[maxY-1, x] = MapInfo.DEAD_LINE;
             }
+
         }
 
         //Map Rendering
@@ -81,20 +82,22 @@ namespace Map
                             Console.Write("  ");
                             break;
                         case MapInfo.CEILING:
+                            Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.Write("▥");
                             break;
                         case MapInfo.SIDE:
+                            Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.Write("▤");
                             break;
                         case MapInfo.DEAD_LINE:
-                            Console.Write("△");
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.Write("▲");
                             break;
                     }
                 }
             }
         }
-        //Test Function
-        public void Render(bool IsTest)
+        public void TestRender()
         {
             for (int y = 0; y < maxY; y++)
             {
@@ -104,17 +107,27 @@ namespace Map
                     switch (GameMap.GetInstance[y, x])
                     {
                         case MapInfo.NONE:
-                            Console.Write("0");
+                            Console.Write("  ");
                             break;
                         case MapInfo.CEILING:
-                            Console.Write("1");
+                            Console.Write("▥");
+                            break;
+                        case MapInfo.SIDE:
+                            Console.Write("▤");
                             break;
                         case MapInfo.PLAYER:
-                            Console.Write("5");
+                            Console.Write("〓");
+                            break;
+                        case MapInfo.DEAD_LINE:
+                            Console.Write("△");
                             break;
                     }
                 }
             }
+        }
+        public void SetObjectInMap(int Xpos, int Ypos, MapInfo data)
+        {
+            GameMap.GetInstance[Ypos, Xpos] = data;   
         }
         public void SetObjectInMap(string ObjectName, int size, Position pos)
         {

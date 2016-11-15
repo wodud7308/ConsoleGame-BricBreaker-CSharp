@@ -1,13 +1,14 @@
 ﻿using System;
-using Object.Location;        
+using Object.Location;
+using Map;
 
-namespace Object
+namespace Object.Blocks
 {
     class Block
     {
-        private Position BlockPosition;
+        private Position position;
         private ConsoleColor blockColor;
-        private int blockHP;
+        private int blockHP =1;
 
         public ConsoleColor BlockColor
         {
@@ -23,17 +24,22 @@ namespace Object
         {
             BlockColor = color;
         }
-        public void BlockDamaged(int damage)
+        public void DamageBlock(int damage, int x, int y)
         {
-            BlockHP -= damage;
-            if(BlockHP == 0)
-            {
-                BlockDestroy();
-            }             
+            //BlockHP -= damage;
+            //if (BlockHP == 0)
+            //{
+                BlockDestroy(x, y);
+           // }
         }
-        public void BlockDestroy()
+        public void BlockDestroy(int x, int y)
         {
-
+            GameMap.GetInstance.SetObjectInMap(x, y, MapInfo.NONE);
+        }
+        public void Initialize(int x, int y)
+        {
+            position = new Position();
+            position.SetPosition(x*2, y);
         }
     }
 }

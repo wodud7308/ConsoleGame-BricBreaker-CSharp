@@ -12,6 +12,7 @@ namespace Bric_Breaker
     {
         static void Main(string[] args)
          {
+
             Console.SetWindowSize(104, 25);
             Console.SetBufferSize(104, 25);
             Game.GetInstance.Initailize();

@@ -29,7 +29,7 @@ namespace Management
 
         public void Update()
         {
-            Thread.Sleep(second/frame); 
+           UpdateEachFrame(second/frame); 
         }
     }
 }
