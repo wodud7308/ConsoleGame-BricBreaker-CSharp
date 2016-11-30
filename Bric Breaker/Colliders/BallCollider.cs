@@ -8,41 +8,52 @@ namespace Collision
 {
     class BallCollider
     {
-        public void Collide(string direction, Position pos, ref int velocity, ref int x)
+        public bool Collide(string direction, Position pos, int y, int x)
         {
+        
             if(direction == "vertical")
             {
-                if (GameMap.GetInstance[pos.Y+velocity,pos.X/2] == MapInfo.CEILING)
+                if (GameMap.GetInstance[pos.Y+y,pos.X/2] == MapInfo.CEILING)
                 {
-                    velocity = velocity * -1;
+                    return true;
                 }
-                if(GameMap.GetInstance[pos.Y+velocity, pos.X/2] == MapInfo.BLOCK)
-                {
-                    CollideOnBlock(pos.X / 2, pos.Y + velocity);
-                    velocity = velocity * -1;
-                }
-                if (GameMap.GetInstance[pos.Y + velocity, pos.X / 2] == MapInfo.PLAYER)
+                if (GameMap.GetInstance[pos.Y + y, pos.X / 2] == MapInfo.PLAYER)
                 {
                     CollideOnPlayer(pos, ref x);
-                    velocity = velocity * -1;
+                    return true;
                 }
             }
             else if(direction == "horizontal")
             {
-                if (GameMap.GetInstance[pos.Y, (pos.X+ (2*velocity))/2] == MapInfo.SIDE)
+                if (GameMap.GetInstance[pos.Y, (pos.X)/2+x] == MapInfo.SIDE)
                 {
-                    velocity = velocity * -1;
-                }
-                if (GameMap.GetInstance[pos.Y, (pos.X + (2 * velocity)) / 2] == MapInfo.BLOCK)
-                {
-                    CollideOnBlock(pos.X + (2 * velocity) / 2, pos.Y);
-                    velocity = velocity * -1;
+                    return true;
                 }
             }
+            return false;
         }
-        private void CollideOnBlock(int x, int y)
+        public bool CollideOnBlock(int yVelocity, Position pos)
         {
-            BlcokManager.GetInstance.AttackBlock(x, y);
+            if (GameMap.GetInstance[pos.Y + yVelocity, pos.X / 2] == MapInfo.BLOCK)
+            {
+                GameMap.GetInstance.SetObjectInMap(pos.X / 2, pos.Y+yVelocity, MapInfo.NONE);
+                GameManager.GetInstance.Score = 100;
+                return true;
+            }
+            return false;
+        }
+        public bool CollideOnBlock(int xVelocity, int yVelocity, Position pos)
+        {
+            int x = pos.X;
+            int y = pos.Y + yVelocity;
+   
+            if (GameMap.GetInstance[y, x / 2 + xVelocity] == MapInfo.BLOCK)
+            {
+                GameMap.GetInstance.SetObjectInMap(x / 2 + xVelocity, y, MapInfo.NONE);
+                GameManager.GetInstance.Score = 100;
+                return true;
+            }
+            return false;
         }
         private void CollideOnPlayer(Position pos, ref int velocity)
         {
@@ -53,14 +64,6 @@ namespace Collision
                 {
                     playerX = x;
                 }
-            }
-            if(playerX - pos.X > -18)
-            {
-                velocity = velocity * -1;
-            }
-            else
-            {
-                return;
             }
         }
     }

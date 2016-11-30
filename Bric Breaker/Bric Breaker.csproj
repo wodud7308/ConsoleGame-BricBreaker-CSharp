@@ -45,14 +45,14 @@
   <ItemGroup>
     <Compile Include="Colliders\BlockCollider.cs" />
     <Compile Include="Colliders\PlayerCollider.cs" />
-    <Compile Include="Managers\BlockManager\BlcokManager.cs" />
+    <Compile Include="File\FileIOManager.cs" />
+    <Compile Include="Managers\BlockManager\BlockManager.cs" />
     <Compile Include="Object\ball\Ball.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Managers\GameManager\GameManager.cs" />
     <Compile Include="Managers\InputManager\InputManager.cs" />
     <Compile Include="Managers\SceneManager\SceneManager.cs" />
     <Compile Include="Managers\Singleton\Singleton.cs" />
-    <Compile Include="Object\Blocks\Standard\Block.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Colliders\BallCollider.cs" />
     <Compile Include="Object\player\Player.cs" />

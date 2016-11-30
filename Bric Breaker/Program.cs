@@ -11,7 +11,7 @@ namespace Bric_Breaker
     class Program
     {
         static void Main(string[] args)
-         {
+          {
 
             Console.SetWindowSize(104, 25);
             Console.SetBufferSize(104, 25);

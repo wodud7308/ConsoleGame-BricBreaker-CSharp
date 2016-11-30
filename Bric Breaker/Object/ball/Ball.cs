@@ -12,16 +12,6 @@ namespace Object
         private int yVelocity;
         private int xVelocity;
 
-        public void BlockPosInfo()
-        {
-            Console.SetCursorPosition(80,5);
-            Console.Write("Next value : {0} ",GameMap.GetInstance[position.Y +yVelocity, position.X / 2]);
-            Console.SetCursorPosition(80, 8);
-            Console.Write("This value : {0} ", GameMap.GetInstance[position.Y, position.X / 2]);
-            Console.SetCursorPosition(80, 11);
-            Console.Write("vlaue zero of y pos : {0}", GameMap.GetInstance[0, 2]);
-        }
-
         public bool IsDead()
         {            
             if(GameMap.GetInstance[position.Y+yVelocity,position.X/2]==MapInfo.DEAD_LINE)
@@ -30,7 +20,22 @@ namespace Object
             }                            
             return false;
         }
-
+       public void Bounce()
+        {
+            if(collider.Collide("vertical", position, yVelocity, xVelocity)|| collider.CollideOnBlock(yVelocity, position))
+            {
+                yVelocity = yVelocity * -1;
+            }
+            if(collider.Collide("horizontal", position, yVelocity, xVelocity))
+            {
+                xVelocity = xVelocity * -1;
+            }
+            if(collider.CollideOnBlock(xVelocity, yVelocity, position))
+            {
+                yVelocity = yVelocity * -1;
+                xVelocity = xVelocity * -1;
+            }
+        }
         public void Initialize()
         {
             position = new Position();
@@ -40,12 +45,7 @@ namespace Object
             yVelocity = 1;
             GameMap.GetInstance.SetObjectInMap(2, 10, MapInfo.BALL);
         }
- 
-        private void Collide()
-        {
-            collider.Collide("vertical", position, ref yVelocity, ref xVelocity);
-            collider.Collide("horizontal", position, ref xVelocity, ref yVelocity);            
-        }
+      
         public void Move()
         {
             Remove(position.X, position.Y);
@@ -55,7 +55,7 @@ namespace Object
 
         public void Update()
         {
-            Collide();
+           Bounce();
             Move();
         }
 

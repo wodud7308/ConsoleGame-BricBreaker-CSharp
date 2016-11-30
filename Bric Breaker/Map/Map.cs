@@ -77,17 +77,17 @@ namespace Map
                 {
                     Console.SetCursorPosition(x * 2, y);
                     switch(GameMap.GetInstance[y,x])
-                    {
+                    {             
                         case MapInfo.NONE:
                             Console.Write("  ");
                             break;
                         case MapInfo.CEILING:
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.Write("▥");
+                            Console.Write("▤");
                             break;
                         case MapInfo.SIDE:
                             Console.ForegroundColor = ConsoleColor.Cyan;
-                            Console.Write("▤");
+                            Console.Write("▥");
                             break;
                         case MapInfo.DEAD_LINE:
                             Console.ForegroundColor = ConsoleColor.Red;

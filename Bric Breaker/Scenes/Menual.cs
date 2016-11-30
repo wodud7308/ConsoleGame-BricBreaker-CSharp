@@ -11,11 +11,11 @@ namespace Scenes
         ConsoleKey key;
         public void Draw()
         {
-            Console.SetCursorPosition(23, 8);
+            Console.SetCursorPosition(37, 8);
             Console.Write("LEFT ARROW ◀      ▶ RIGHT ARROW");
-            Console.SetCursorPosition(23, 10);
+            Console.SetCursorPosition(37, 10);
             Console.Write("MOVE LEFT             MOVE RIGHT");
-            Console.SetCursorPosition(27, 12);
+            Console.SetCursorPosition(41, 12);
             Console.Write("PRESS SPACE TO START GAME");
         }
 

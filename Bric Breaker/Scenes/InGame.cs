@@ -15,9 +15,9 @@ namespace Scenes
                           
         public void Draw()
         {
-            //ball.BlockPosInfo();
+            GameManager.GetInstance.ShowCurrentScore();
             ball.Render();
-            BlcokManager.GetInstance.Render();
+            BlockManager.GetInstance.Render();
             player.Render();
         }
         public void Input()
@@ -29,10 +29,11 @@ namespace Scenes
         {
             Console.Beep();
             GameMap.GetInstance.Initiailize();
-            BlcokManager.GetInstance.Initialize();
+            BlockManager.GetInstance.Initialize();
             ball.Initialize();
             player.Initialize();
             player.Render();
+
             return true;
         }
 

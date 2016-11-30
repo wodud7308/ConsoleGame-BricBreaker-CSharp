@@ -13,6 +13,7 @@ namespace Object
         private PlayerCollider collider;
         private int playerSize;
 
+
         public int PlayerSize
         {
             get { return playerSize; }

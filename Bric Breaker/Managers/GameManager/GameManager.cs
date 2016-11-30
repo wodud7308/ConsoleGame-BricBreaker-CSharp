@@ -7,14 +7,14 @@ namespace Management
     class GameManager : Singleton<GameManager>
     {
         AutoResetEvent AutoReset = new AutoResetEvent(false);
-        private readonly int frame = 15;
+        private readonly int frame = 20;
         private readonly int second = 1000;
-        private int score = 0;
+        private int currentScore = 0;
 
         public int Score
         {
-            get { return score; }
-            private set { score = value; }
+            get { return currentScore; }
+            set { currentScore += value; }
         }
 
         public void UpdateEachFrame(int frame)
@@ -27,6 +27,12 @@ namespace Management
  
         }
 
+        public void ShowCurrentScore()
+        {
+            Console.SetCursorPosition(80, 15);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("S C O R E   :   {0}", Score);
+        }
         public void Update()
         {
            UpdateEachFrame(second/frame); 
