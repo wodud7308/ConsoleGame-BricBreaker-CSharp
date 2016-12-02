@@ -16,6 +16,10 @@ namespace Management
             get { return currentScore; }
             set { currentScore += value; }
         }
+        public void ResetScore()
+        {
+            currentScore = 0;
+        }
 
         public void UpdateEachFrame(int frame)
         {
@@ -29,7 +33,7 @@ namespace Management
 
         public void ShowCurrentScore()
         {
-            Console.SetCursorPosition(80, 15);
+            Console.SetCursorPosition(80, 9);
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("S C O R E   :   {0}", Score);
         }

@@ -17,15 +17,20 @@ namespace Collision
                 {
                     return true;
                 }
-                if (GameMap.GetInstance[pos.Y + y, pos.X / 2] == MapInfo.PLAYER)
-                {
-                    CollideOnPlayer(pos, ref x);
-                    return true;
-                }
+             
             }
             else if(direction == "horizontal")
             {
-                if (GameMap.GetInstance[pos.Y, (pos.X)/2+x] == MapInfo.SIDE)
+                int xVelocity = 0;
+                if( x > 0)
+                {
+                    xVelocity = 1;
+                }
+                if(x < 0)
+                {
+                    xVelocity = -1;
+                }
+                if (GameMap.GetInstance[pos.Y, (pos.X)/2+xVelocity] == MapInfo.SIDE)
                 {
                     return true;
                 }
@@ -45,6 +50,14 @@ namespace Collision
         public bool CollideOnBlock(int xVelocity, int yVelocity, Position pos)
         {
             int x = pos.X;
+            if(xVelocity < 0)
+            {
+                xVelocity = -1;
+            }
+            if(xVelocity > 0)
+            {
+                xVelocity = 1;
+            }
             int y = pos.Y + yVelocity;
    
             if (GameMap.GetInstance[y, x / 2 + xVelocity] == MapInfo.BLOCK)
@@ -55,16 +68,13 @@ namespace Collision
             }
             return false;
         }
-        private void CollideOnPlayer(Position pos, ref int velocity)
+        public bool CollideOnPlayer(Position pos, int yVelocity)
         {
-            int playerX = 0;
-            for(int x = 0; x <GameMap.GetInstance.MaxX; x++)
+            if (GameMap.GetInstance[pos.Y + yVelocity, pos.X / 2] == MapInfo.PLAYER)
             {
-                if(GameMap.GetInstance[pos.Y+1,x]==MapInfo.PLAYER)
-                {
-                    playerX = x;
-                }
+                return true;
             }
+            return false;
         }
     }
 }

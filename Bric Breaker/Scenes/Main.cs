@@ -47,6 +47,7 @@ namespace Scenes
                 case ConsoleKey.Spacebar:
                     Release();
                     SceneManager.GetInstance.ChangeScene(new InGame());
+
                     break;
                 case ConsoleKey.Escape:
                     Release();

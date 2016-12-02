@@ -13,6 +13,47 @@ namespace Object
         private PlayerCollider collider;
         private int playerSize;
 
+        public static int MiddlePos
+        {
+            get
+            {
+                int x = 2;
+                int count = 0;
+                while(count < 3 )
+                {
+                    if(GameMap.GetInstance[21, x] == MapInfo.PLAYER)
+                    {
+                        count++;
+                    }
+                    x++;
+                }
+                return x+1;
+            }
+        }
+        public static int LeftPos
+        {
+            get
+            {
+                int x = 0;
+                while(GameMap.GetInstance[21,x]!=MapInfo.PLAYER)
+                {
+                    x++;
+                }
+                return x;
+            }
+        }
+        public static int RightPos
+        {
+            get
+            {
+                int x = 33;
+                while (GameMap.GetInstance[21, x] != MapInfo.PLAYER)
+                {
+                    x--;
+                }
+                return x;
+            }
+        }
 
         public int PlayerSize
         {

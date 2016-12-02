@@ -12,6 +12,7 @@ namespace Object
         private int yVelocity;
         private int xVelocity;
 
+
         public bool IsDead()
         {            
             if(GameMap.GetInstance[position.Y+yVelocity,position.X/2]==MapInfo.DEAD_LINE)
@@ -22,7 +23,7 @@ namespace Object
         }
        public void Bounce()
         {
-            if(collider.Collide("vertical", position, yVelocity, xVelocity)|| collider.CollideOnBlock(yVelocity, position))
+            if (collider.Collide("vertical", position, yVelocity, xVelocity)|| collider.CollideOnBlock(yVelocity, position))
             {
                 yVelocity = yVelocity * -1;
             }
@@ -34,6 +35,26 @@ namespace Object
             {
                 yVelocity = yVelocity * -1;
                 xVelocity = xVelocity * -1;
+            }
+            if (collider.CollideOnPlayer(position, yVelocity))
+            {
+                if (position.X/2 < Player.MiddlePos && position.X/2 >= Player.LeftPos)
+                {    
+                    xVelocity = -1;
+                }
+                if (position.X/2 == Player.LeftPos)
+                {
+                    xVelocity = -2;
+                }
+                if (position.X/2 > Player.MiddlePos && position.X/2 <= Player.RightPos)
+                {  
+                    xVelocity = 1;
+                }
+                if (position.X/2 == Player.RightPos)
+                {     
+                    xVelocity = 2;
+                }
+                yVelocity = yVelocity * -1;
             }
         }
         public void Initialize()
@@ -49,6 +70,10 @@ namespace Object
         public void Move()
         {
             Remove(position.X, position.Y);
+            if(xVelocity == -2 || xVelocity == 2)
+            {
+
+            }
             position.TransformPosition(xVelocity, yVelocity);
             GameMap.GetInstance.SetObjectInMap(position.X / 2, position.Y, MapInfo.BALL);
         }
@@ -67,7 +92,7 @@ namespace Object
         }
 
         public void Render()
-        {
+        {;
             Console.SetCursorPosition(position.X, position.Y);
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.Write("◎");

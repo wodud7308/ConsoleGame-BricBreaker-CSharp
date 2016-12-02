@@ -1,24 +1,38 @@
 ﻿using singleton;
 using System;
 using Map;
+using Scenes;
 
 namespace Management
 {
     class BlockManager : Singleton<BlockManager>
     {
+        private int blockCount;
+        public int BlockCount
+        {
+            get { return blockCount; }
+            private set { blockCount = value; }
+        }
         public void Initialize()
         {
-            for(int y=5;y<10; y++)
+            BlockCount = 0;
+            for(int y=3;y<8; y++)
             {
                 for(int x=15;x<25;x++)
                 {
+                    BlockCount++;                          
                     GameMap.GetInstance.SetObjectInMap(x, y, MapInfo.BLOCK); 
                 }
             }
         }
-        public void AttackBlock(int x, int y)
+
+        public void Update()
         {
-               
+            if(blockCount == 0)
+            {
+                Console.Clear();
+                SceneManager.GetInstance.ChangeScene(new GameOver());
+            }
         }
         public void Render()
         {

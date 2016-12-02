@@ -3,6 +3,7 @@ using Management;
 using Object;
 using System;
 using Map;
+using System.Threading;
 
 namespace Scenes
 {
@@ -16,9 +17,9 @@ namespace Scenes
         public void Draw()
         {
             GameManager.GetInstance.ShowCurrentScore();
-            ball.Render();
             BlockManager.GetInstance.Render();
             player.Render();
+            ball.Render();
         }
         public void Input()
         {
@@ -28,6 +29,7 @@ namespace Scenes
         public bool Initialize()
         {
             Console.Beep();
+            GameManager.GetInstance.ResetScore();
             GameMap.GetInstance.Initiailize();
             BlockManager.GetInstance.Initialize();
             ball.Initialize();
@@ -47,6 +49,7 @@ namespace Scenes
             }
             ball.Update();
             player.Move(DirectionKey);
+            BlockManager.GetInstance.Update();
         }
         public void Dispose()
         {

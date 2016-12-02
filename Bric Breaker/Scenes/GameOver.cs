@@ -12,6 +12,10 @@ namespace Scenes
         ConsoleKey key;
         public void Draw()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(46, 8);
+            Console.Write("S C O R E  :  {0}", GameManager.GetInstance.Score);
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(44, 11);
             Console.Write("G A M E   O V E R ...");
             Console.SetCursorPosition(43, 13);
@@ -20,6 +24,8 @@ namespace Scenes
             Console.Write("P R E S S   R   T O   R E P L A Y");
             Console.SetCursorPosition(36, 17);
             Console.Write("P R E S S   S P A C E   T O   M A I N");
+
+
         }
         public void Input()
         {
@@ -28,7 +34,6 @@ namespace Scenes
         public bool Initialize()
         {
             Console.Beep();
-            Console.ForegroundColor = ConsoleColor.Red;
             return true;
         }
 

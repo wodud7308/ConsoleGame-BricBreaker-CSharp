@@ -1,0 +1,5 @@
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Release\Bric Breaker.exe.config
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Release\Bric Breaker.exe
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\bin\Release\Bric Breaker.pdb
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\obj\Release\Bric Breaker.exe
+D:\Visual Studio 2015\Projects\Bric Breaker\Bric Breaker\obj\Release\Bric Breaker.pdb

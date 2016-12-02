@@ -10,8 +10,8 @@ namespace File
     class FileIOManager
     {
         public void CreateFile()
-        {           
-             //System.Environment.CurrentDirectory 현재 프로그램 경로
+        {
+            //System.Environment.CurrentDirectory 현재 프로그램 경로
         }
     }
 }
